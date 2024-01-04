@@ -1,8 +1,53 @@
-import { createServer } from 'node:http';
+import { fastify } from "fastify";
+import {DatabaseMemory} from "./database-memory.js";
 
-const server = createServer((request, response) => {
-    response.write('Hello World');
-    return response.end();
+
+const server = fastify();
+
+const database = new DatabaseMemory();
+
+server.post('/videos', (req, res) => {
+
+    const {title, description, duration} = req.body;
+
+    database.create({ 
+        title,
+        description,
+        duration,
+    });
+
+    return res.status(201).send();
 });
 
-server.listen(3333);
+server.get('/videos', (req, res) => {
+    const search = req.query.search;
+    const videos = database.list(search);
+
+    return videos;
+});
+
+server.put('/videos/:id', (req, res) => {
+    const videoId = req.params.id;
+
+    const {title, description, duration} = req.body;
+
+    database.update(videoId, {
+        title,
+        description,
+        duration,
+    });
+
+    return res.status(204).send();
+});
+
+server.delete('/videos/:id', (req, res) => {
+    const videoId = req.params.id;
+
+    database.delete(videoId);
+
+    return res.status(204).send();
+});
+
+server.listen({
+    port: 3333
+});

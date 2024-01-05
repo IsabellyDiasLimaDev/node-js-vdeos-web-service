@@ -6,6 +6,11 @@
 - [Videos Api](#video-api)
 
   - [Installation](#installation)
+  - [Endpoints Manual](#endpoints-manual)
+  - [Videos endpoint](#videos-endpoint)
+  - [Project Structure](#project-structure)
+  - [Data Schemas](#data-schemas)
+    - [Video Schema](#video-schema)
 
 ## Installation
 

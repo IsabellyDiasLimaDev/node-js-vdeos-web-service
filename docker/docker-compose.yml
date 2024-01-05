@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: "node-rocketseat"
+      POSTGRES_PASSWORD: "ROOT"
+      POSTGRES_USER: "ROOT"
+    ports:
+      - "5432:5432"

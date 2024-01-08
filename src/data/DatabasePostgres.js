@@ -1,5 +1,5 @@
 import {randomUUID} from "node:crypto";
-import { sql } from "./db.js";
+import { sql } from "./dbConfig.js";
 
 export class DatabasePostgres {
     #videos = new Map();

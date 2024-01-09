@@ -55,15 +55,30 @@ Below is the current project directory structure:
 ```
 ├── docker
 │   ├── docker-compose.yaml
+├── src
+    ├── data
+        ├── queries
+        ├── repositories
+        ├── dbConfig.js
+    ├── main
+        ├── config
+        ├── controllers
+            ├── VideoController.js
+        ├── middlewares
+        ├── models
+        ├── routes
+            ├── videoRoutes.js
+        ├── services
+            ├── VideoService.js
+        ├── utils
+        ├── server.js
+    ├── test
+├── .env
 ├── .gitignore
-├── database-memory.js
-├── database-postgres.js
-├── db.js
 ├── package-lock.json
 ├── package.json
 ├── README.md
 ├── routes.http
-├── server.js
 ```
 
 ## Data Schemas

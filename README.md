@@ -58,21 +58,23 @@ Below is the current project directory structure:
 ├── src
     ├── data
         ├── queries
+            ├── createVideo.js
+            ├── deleteVideo.js
+            ├── getVideoById.js
+            ├── getVideos.js
+            ├── searchVideo.js
+            ├── updateVideo.js
         ├── repositories
+            ├── VideoRepository.js
         ├── dbConfig.js
     ├── main
-        ├── config
         ├── controllers
             ├── VideoController.js
-        ├── middlewares
-        ├── models
         ├── routes
             ├── videoRoutes.js
         ├── services
             ├── VideoService.js
-        ├── utils
         ├── server.js
-    ├── test
 ├── .env
 ├── .gitignore
 ├── package-lock.json

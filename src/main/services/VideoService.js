@@ -1,8 +1,6 @@
-import { DatabasePostgres } from "../../data/DatabasePostgres.js";
 import { VideoRepository } from "../../data/repositories/VideoRepository.js";
 
 export class VideoService {
-  database = new DatabasePostgres();
   repository = new VideoRepository();
 
   async create({ title, description, duration }) {
@@ -22,11 +20,12 @@ export class VideoService {
   }
 
   async getById(id) {
-    return this.database.getById(id);
+    return this.repository.getById(id);
   }
 
   async update({ id, title, description, duration }) {
-    await this.database.update(id, {
+    await this.repository.update({
+      id,
       title,
       description,
       duration,
@@ -34,6 +33,6 @@ export class VideoService {
   }
 
   async delete(id) {
-    await this.database.delete(id);
+    await this.repository.delete(id);
   }
 }

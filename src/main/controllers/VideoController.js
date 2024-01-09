@@ -1,53 +1,38 @@
-import { DatabasePostgres } from "../../data/DatabasePostgres.js";
+import { VideoService } from "../services/VideoService.js";
 
 export class VideoController {
-    database = new DatabasePostgres();
+  videoService = new VideoService();
 
-    async create(req, res) {
-        const {title, description, duration} = req.body;
-    
-        await this.database.create({ 
-            title,
-            description,
-            duration,
-        });
-    
-        return res.status(201).send();
-    }
+  async create(req, res) {
+    await this.videoService.create(req.body);
 
-    async getAll(req, res) {
-        const search = req.query.search;
-        const videos = await this.database.list(search);
-    
-        return videos;
-    }
+    return res.status(201).send();
+  }
 
-    async getById(req, res) {
-        const id = req.params.id;
-        const video = await this.database.getById(id);
-    
-        return video;
-    }
+  async getAll(req, res) {
+    const { search } = req.query;
+    return this.videoService.getAll(search);
+  }
 
-    async update(req, res) {
-        const videoId = req.params.id;
-    
-        const {title, description, duration} = req.body;
-    
-        await this.database.update(videoId, {
-            title,
-            description,
-            duration,
-        });
-    
-        return res.status(204).send();
-    }
+  async getById(req, res) {
+    const { id } = req.params;
+    return this.videoService.getById(id);
+  }
 
-    async delete(req, res) {
-        const videoId = req.params.id;
-    
-        await this.database.delete(videoId);
-    
-        return res.status(204).send();
-    }
+  async update(req, res) {
+    const { id } = req.params;
+    const { title, description, duration } = req.body;
+
+    await this.videoService.update({ id, title, description, duration });
+
+    return res.status(204).send();
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await this.videoService.delete(id);
+
+    return res.status(204).send();
+  }
 }

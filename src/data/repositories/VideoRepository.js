@@ -21,7 +21,8 @@ export class VideoRepository {
 
   async create(video) {
     const id = randomUUID();
-    return createVideo({ ...video, id });
+    await createVideo({ ...video, id });
+    return this.getById(id);
   }
 
   async update(video) {

@@ -4,6 +4,12 @@ export class VideoService {
   repository = new VideoRepository();
 
   async create({ title, description, duration }) {
+    const invalidData = !title || !description || !duration;
+
+    if (invalidData) {
+      return { error: "Dados inválidos" };
+    }
+
     return this.repository.create({
       title,
       description,
@@ -12,18 +18,47 @@ export class VideoService {
   }
 
   async getAll(search) {
+    const videos = await this.repository.listAll();
+
     if (!search) {
-      return this.repository.listAll();
+      if (videos.length <= 0) {
+        return { error: "Não foram encontrados registros" };
+      }
+      return videos;
     }
 
-    return this.repository.search(search);
+    return this.getAllWithSearch(search);
+  }
+
+  async getAllWithSearch(search) {
+    const videos = await this.repository.search(search);
+
+    if (videos.length <= 0) {
+      return { error: "Não foram encontrados registros" };
+    }
+
+    return videos;
   }
 
   async getById(id) {
-    return this.repository.getById(id);
+    if (!id) {
+      return { error: "Id não foi informado" };
+    }
+
+    const video = await this.repository.getById(id);
+
+    if (!video) {
+      return { error: "Não foram encontrado registro com o id informado" };
+    }
   }
 
   async update({ id, title, description, duration }) {
+    const invalidData = !id || !title || !description || !duration;
+
+    if (invalidData) {
+      return { error: "Dados inválidos" };
+    }
+
     await this.repository.update({
       id,
       title,
@@ -33,6 +68,16 @@ export class VideoService {
   }
 
   async delete(id) {
+    if (!id) {
+      return { error: "Id não foi informado" };
+    }
+
+    const video = await this.repository.getById(id);
+
+    if (!video) {
+      return { error: "Não foram encontrado registro com o id informado" };
+    }
+
     await this.repository.delete(id);
   }
 }

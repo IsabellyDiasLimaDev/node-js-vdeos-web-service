@@ -4,26 +4,50 @@ export class VideoController {
   videoService = new VideoService();
 
   async create(req, res) {
-    await this.videoService.create(req.body);
+    const video = await this.videoService.create(req.body);
 
-    return res.status(201).send();
+    if (video?.error) {
+      return res.status(400).send(video);
+    }
+    return res.status(201).send(video);
   }
 
   async getAll(req, res) {
     const { search } = req.query;
-    return this.videoService.getAll(search);
+    const videos = await this.videoService.getAll(search);
+
+    if (videos?.error) {
+      return res.status(400).send(videos);
+    }
+
+    return res.send(videos);
   }
 
   async getById(req, res) {
     const { id } = req.params;
-    return this.videoService.getById(id);
+    const video = await this.videoService.getById(id);
+
+    if (video?.error) {
+      return res.status(400).send(video);
+    }
+
+    return res.send(video);
   }
 
   async update(req, res) {
     const { id } = req.params;
     const { title, description, duration } = req.body;
 
-    await this.videoService.update({ id, title, description, duration });
+    const command = await this.videoService.update({
+      id,
+      title,
+      description,
+      duration,
+    });
+
+    if (command?.error) {
+      return res.status(400).send(command);
+    }
 
     return res.status(204).send();
   }
@@ -31,7 +55,12 @@ export class VideoController {
   async delete(req, res) {
     const { id } = req.params;
 
-    await this.videoService.delete(id);
+    const command = await this.videoService.delete(id);
+
+    if (command?.error) {
+      console.log(command.error);
+      return res.status(400).send(command);
+    }
 
     return res.status(204).send();
   }

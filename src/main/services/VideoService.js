@@ -21,7 +21,7 @@ export class VideoService {
     const videos = await this.repository.listAll();
 
     if (!search) {
-      if (videos.length <= 0) {
+      if (videos.length === 0) {
         return { error: "Não foram encontrados registros" };
       }
       return videos;
@@ -33,7 +33,7 @@ export class VideoService {
   async getAllWithSearch(search) {
     const videos = await this.repository.search(search);
 
-    if (videos.length <= 0) {
+    if (videos.length === 0) {
       return { error: "Não foram encontrados registros" };
     }
 
@@ -73,8 +73,8 @@ export class VideoService {
     }
 
     const video = await this.repository.getById(id);
-
-    if (!video) {
+    console.log(video);
+    if (video.length === 0) {
       return { error: "Não foram encontrado registro com o id informado" };
     }
 

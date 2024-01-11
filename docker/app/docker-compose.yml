@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    image: isabellydias29/videoapi:1.1
+    environment:
+      - PGHOST=localhost:5432
+      - PGDATABASE=node-rocketseat
+      - PGUSER=ROOT
+      - PGPASSWORD=ROOT
+    ports:
+      - 3333:3333

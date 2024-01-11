@@ -56,6 +56,15 @@ Below is the current project directory structure:
 ├── docker
 │   ├── docker-compose.yaml
 ├── src
+    ├── application
+        ├── controllers
+            ├── VideoController.js
+        ├── routes
+            ├── videoRoutes.js
+        ├── services
+            ├── VideoService.js
+    ├── core
+        ├── server.js
     ├── data
         ├── queries
             ├── createVideo.js
@@ -67,14 +76,7 @@ Below is the current project directory structure:
         ├── repositories
             ├── VideoRepository.js
         ├── dbConfig.js
-    ├── main
-        ├── controllers
-            ├── VideoController.js
-        ├── routes
-            ├── videoRoutes.js
-        ├── services
-            ├── VideoService.js
-        ├── server.js
+
 ├── .env
 ├── .gitignore
 ├── package-lock.json
@@ -98,4 +100,19 @@ The project have the current data schemas:
 }
 ```
 
+## Meta
+
+Linkedin Profile – [Isabelly Dias](https://www.linkedin.com/in/isa-dev/) 
+
+Email – isabelly.developer@gmail.com
+
+Github profile – [IsabellyDiasLimaDev](https://github.com/IsabellyDiasLimaDev/IsabellyDiasLimaDev)
+
+## Contributing
+
+1. Fork it (<https://github.com/IsabellyDiasLimaDev/node-js-vdeos-web-service>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request
 

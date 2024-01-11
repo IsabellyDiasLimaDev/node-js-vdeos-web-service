@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/main/server.js",
-    "dev": "node --watch --trace-warnings ./src/main/server.js"
+    "start": "node ./src/core/server.js",
+    "dev": "node --watch --trace-warnings ./src/core/server.js"
   },
   "keywords": [],
   "author": "",

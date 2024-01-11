@@ -1,5 +1,5 @@
 import { fastify } from "fastify";
-import { videoRoutesSetup } from "./routes/videoRoutes.js";
+import { videoRoutesSetup } from "../application/routes/videoRoutes.js";
 
 const server = fastify();
 

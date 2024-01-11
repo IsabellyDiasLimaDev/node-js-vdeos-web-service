@@ -1,4 +1,4 @@
-import { VideoController } from "../controllers/videoController.js";
+import { VideoController } from "../../application/controllers/VideoController.js";
 
 const videoController = new VideoController();
 
